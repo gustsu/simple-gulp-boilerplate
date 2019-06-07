@@ -1,9 +1,18 @@
+/**
+ *   COMMON COMMANDS
+ *   gulp                   Builds CSS and JS
+ *   gulp build             Builds CSS and JS, same as gulp
+ *   gulp watch             Starts BrowserSync on localhost:3000 (COMING SOON)
+ *   gulp styles            Builds CSS
+ *   gulp scripts           Build JS
+ **/
+
 //SETUP
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var csso = require('gulp-csso');
 var notify = require('gulp-notify');
-var browserSync = require('browser-sync').create();
+// var browserSync = require('browser-sync').create();
 // var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
@@ -23,7 +32,8 @@ var paths = {
 };
 
 //TASKS
-//styles task
+
+//Styles Task
 gulp.task('styles', function() {
 	return gulp
 		.src(paths.styles.src)
@@ -37,7 +47,7 @@ gulp.task('styles', function() {
 		);
 });
 
-//scripts task
+//Scripts Task
 gulp.task('scripts', function() {
 	return (
 		gulp
@@ -53,6 +63,12 @@ gulp.task('scripts', function() {
 			)
 	);
 });
+
+//Default Task
+// gulp.task('default', ['styles', 'scripts']);
+
+//Build Task
+// gulp.task('build', ['styles', 'scripts']);
 
 //watch task coming soon
 //watch task
