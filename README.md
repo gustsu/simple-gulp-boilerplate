@@ -1,5 +1,18 @@
 # simple-gulp-boilerplate
 SCSS + ES6 (VIA BABEL) + HOT RELOADING 
+
+
+## File Structure
+    .
+    ├── src                     # Source Files
+    │   ├── scripts             # All JS Files
+    │   ├── styles              # All SCSS Files 
+    │ 
+    ├── dist                    # Minified and Transpiled Files
+    │   ├── scripts             # All JS Files
+    │   ├── styles              # All SCSS Files 
+    └── ...
+
 ## Available Commands
 
 | Command                | Description                  |
@@ -8,15 +21,3 @@ SCSS + ES6 (VIA BABEL) + HOT RELOADING
 | `gulp` or `gulp build` | Builds project               |
 | `gulp watch`           | Watches Files For Changes    |
 
-
-##File Structure
-├── src                     # Source Files
-│   ├── scripts             # All JS Files
-│   ├── styles              # All SCSS Files
-│   └── ...                 # Other
-│ 
-├── dist                    # Minified and Transpiled Files
-│   ├── scripts             # All JS Files
-│   ├── styles              # All SCSS Files
-│   └── ...                 # Other
-└── ...
