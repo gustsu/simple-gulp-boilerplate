@@ -10,7 +10,7 @@ SCSS + ES6 (VIA BABEL) + HOT RELOADING
     │ 
     ├── dist                    # Minified and Transpiled Files
     │   ├── scripts             # All JS Files
-    │   ├── styles              # All SCSS Files 
+    │   ├── styles              # All CSS Files 
     └── ...
 
 ## Available Commands
