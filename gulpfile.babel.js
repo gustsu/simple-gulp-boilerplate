@@ -23,12 +23,12 @@ var projectURL = 'http://test-server:8000/'; //Change to your local dev server u
 var paths = {
 	styles: {
 		src: 'src/styles/styles.scss', //entry point
-		dest: 'assets/styles/', //exit point
+		dest: 'dist/styles/', //exit point
 		watch: 'src/styles/*.scss' //path to watch for changes
 	},
 	scripts: {
 		src: 'src/scripts/*.js', //entry point
-		dest: 'assets/scripts/', //exit point
+		dest: 'dist/scripts/', //exit point
 		watch: 'src/scripts/*.js' //path to watch for changes
 	}
 };
@@ -40,6 +40,7 @@ function styles() {
 		.src(paths.styles.src)
 		.pipe(sass().on('error', sass.logError))
 		.pipe(csso())
+		.pipe(concat('styles.min.css'))
 		.pipe(gulp.dest(paths.styles.dest))
 		.pipe(
 			notify({
@@ -70,7 +71,10 @@ function watch() {
 }
 
 //serve task
-function serve() {}
+function serve() {
+	//browserSync STUFF
+	//projectURL STUFF
+}
 
 //build task
 var build = gulp.parallel(styles, scripts);
