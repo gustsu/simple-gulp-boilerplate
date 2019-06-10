@@ -1,5 +1,5 @@
 # simple-gulp-boilerplate
-SCSS + ES6 (VIA BABEL) + HOT RELOADING 
+GULP4 + SCSS + ES6 (VIA BABEL) + HOT RELOADING 
 
 
 ## File Structure
