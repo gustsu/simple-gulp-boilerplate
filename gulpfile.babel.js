@@ -2,7 +2,7 @@
  *   COMMON COMMANDS
  *   gulp                   Builds CSS and JS
  *   gulp build             Builds CSS and JS, same as gulp
- *   gulp watch             Starts BrowserSync on localhost:3000 (COMING SOON)
+ *   gulp watch             Watches for changes and starts BrowserSync on localhost:3000 (COMING SOON)
  *   gulp styles            Builds CSS
  *   gulp scripts           Build JS
  **/
@@ -19,7 +19,7 @@ sass.compiler = require('node-sass');
 var browserSync = require('browser-sync').create();
 
 //CONFIGS
-var projectURL = 'http://test-server:8000/'; //Change to your local dev server url
+var projectURL = 'http://test-server:8000/'; //change to your local dev server url
 var paths = {
 	styles: {
 		src: 'src/styles/styles.scss', //entry point
@@ -33,8 +33,7 @@ var paths = {
 	}
 };
 
-//TASKS
-//styles task
+//styles function
 function styles() {
 	return gulp
 		.src(paths.styles.src)
@@ -49,7 +48,7 @@ function styles() {
 		);
 }
 
-//scripts task
+//scripts function
 function scripts() {
 	return gulp
 		.src(paths.scripts.src, { sourcemaps: true })
@@ -64,19 +63,19 @@ function scripts() {
 		);
 }
 
-//watch task
+//watch function
 function watch() {
 	gulp.watch(paths.scripts.watch, scripts);
 	gulp.watch(paths.styles.watch, styles);
 }
 
-//serve task
+//serve function
 function serve() {
 	//browserSync STUFF
 	//projectURL STUFF
 }
 
-//build task
+//build function
 var build = gulp.parallel(styles, scripts);
 
 //attach the functions to tasks
