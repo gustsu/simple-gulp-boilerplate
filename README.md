@@ -1,16 +1,16 @@
 # simple-gulp-boilerplate
-GULP4 + SCSS + ES6 (VIA BABEL) + HOT RELOADING 
+GULP4 + SCSS + ES6 
 
 
 ## File Structure
     .
     ├── src                     # Source Files
-    │   ├── scripts             # All JS Files
-    │   ├── styles              # All SCSS Files 
+    │   ├── js                  # All JS Files
+    │   ├── scss                # All SCSS Files 
     │ 
     ├── dist                    # Minified and Transpiled Files
-    │   ├── scripts             # All JS Files
-    │   ├── styles              # All CSS Files 
+    │   ├── js                  # Minified JS File
+    │   ├── css                 # Minified CSS File 
     └── ...
 
 ## Available Commands

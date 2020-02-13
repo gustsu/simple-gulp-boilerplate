@@ -10,28 +10,33 @@
 //SETUP
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+sass.compiler = require('node-sass');
 var csso = require('gulp-csso');
 var notify = require('gulp-notify');
 var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
-sass.compiler = require('node-sass');
 var browserSync = require('browser-sync').create();
+var del = require('del');
 
 //CONFIGS
-var projectURL = 'http://test-server:8000/'; //change to your local dev server url
+var projectURL = 'http://test-server:8888/'; //change to your local dev server url
 var paths = {
 	styles: {
-		src: 'src/styles/styles.scss', //entry point
-		dest: 'dist/styles/', //exit point
-		watch: 'src/styles/*.scss' //path to watch for changes
+		src: 'src/scss/styles.scss', //entry point
+		dest: 'dist/css/', //exit point
+		watch: 'src/scss/*.scss' //path to watch for changes
 	},
 	scripts: {
-		src: 'src/scripts/*.js', //entry point
-		dest: 'dist/scripts/', //exit point
-		watch: 'src/scripts/*.js' //path to watch for changes
+		src: 'src/js/*.js', //entry point
+		dest: 'dist/js/', //exit point
+		watch: 'src/js/*.js' //path to watch for changes
 	}
 };
+
+function clean() {
+	return del([ 'dist' ]);
+}
 
 //styles function
 function styles() {
@@ -51,7 +56,7 @@ function styles() {
 //scripts function
 function scripts() {
 	return gulp
-		.src(paths.scripts.src, { sourcemaps: true })
+		.src(paths.scripts.src, { sourcemaps: false })
 		.pipe(babel())
 		.pipe(uglify())
 		.pipe(concat('scripts.min.js'))
@@ -76,12 +81,14 @@ function serve() {
 }
 
 //build function
-var build = gulp.parallel(styles, scripts);
+var build = gulp.series(clean, gulp.parallel(styles, scripts));
 
 //attach the functions to tasks
 //You can use CommonJS `exports` module notation to declare tasks, more info here: https://github.com/gulpjs/gulp
+exports.clean = clean;
 exports.styles = styles;
 exports.scripts = scripts;
+exports.watch = watch;
 exports.build = build;
 exports.default = build;
-exports.watch = watch;
+
