@@ -10,14 +10,15 @@
 //SETUP
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-sass.compiler = require('node-sass');
-var csso = require('gulp-csso');
+var cleanCSS = require('gulp-clean-css');
 var notify = require('gulp-notify');
 var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
-var browserSync = require('browser-sync').create();
+// var browserSync = require('browser-sync').create();
+var include = require('gulp-include');
 var del = require('del');
+sass.compiler = require('node-sass');
 
 //CONFIGS
 var projectURL = 'http://test-server:8888/'; //change to your local dev server url
@@ -28,7 +29,7 @@ var paths = {
 		watch: 'src/scss/*.scss' //path to watch for changes
 	},
 	scripts: {
-		src: 'src/js/*.js', //entry point
+		src: 'src/js/scripts.js', //entry point
 		dest: 'dist/js/', //exit point
 		watch: 'src/js/*.js' //path to watch for changes
 	}
@@ -43,7 +44,7 @@ function styles() {
 	return gulp
 		.src(paths.styles.src)
 		.pipe(sass().on('error', sass.logError))
-		.pipe(csso())
+		.pipe(cleanCSS())
 		.pipe(concat('styles.min.css'))
 		.pipe(gulp.dest(paths.styles.dest))
 		.pipe(
@@ -58,6 +59,12 @@ function scripts() {
 	return gulp
 		.src(paths.scripts.src, { sourcemaps: false })
 		.pipe(babel())
+		.pipe(include({
+			includePaths: [
+				__dirname + "/node_modules"
+			]
+		}
+		))
 		.pipe(uglify())
 		.pipe(concat('scripts.min.js'))
 		.pipe(gulp.dest(paths.scripts.dest))
